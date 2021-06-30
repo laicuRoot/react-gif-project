@@ -13,7 +13,7 @@ class App extends Component {
 
     this.state = {
       gifs: [],
-      selectedGifId: 'UWKwo3KQrkTcRzj0Bz',
+      selectedGifId: null,
     };
   }
 
@@ -22,20 +22,22 @@ class App extends Component {
       q: query,
       rating: 'g',
       limit: 10
-    },  (err, res) => {
-        // Res contains gif data!
-        this.setState({
-          gifs: res.data
-        });
+    }, (err, res) => {
+      // Res contains gif data!
+      this.setState({
+        gifs: res.data
+      });
+    });
+  }
+
+  updateID = (id) => {
+    this.setState({
+      selectedGifId: id
     });
   }
 
   // eslint-disable-next-line lines-between-class-members
   render() {
-    const gifs = [
-      {id: 'UWKwo3KQrkTcRzj0Bz'},
-      {id: 'tJ1jipvvMs4r7xuZnI'},
-    ];
     return (
       <div>
         <div className='left-scene'>
@@ -45,7 +47,7 @@ class App extends Component {
           </div>
         </div>
         <div className='right-scene'>
-          <GifList gifs={this.state.gifs} />
+          <GifList gifs={this.state.gifs} updateID={this.updateID} />
         </div>
       </div>
       );

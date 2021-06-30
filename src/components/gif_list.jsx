@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Gif from './gif.jsx';
 
 class GifList extends Component {
- renderList = () => {
-  return this.props.gifs.map(gif => {
-        return <Gif id={gif.id} key={gif.id} />
-      })
-  }
+ renderList = (props) => {
+   // eslint-disable-next-line arrow-parens, react/destructuring-assignment
+   return this.props.gifs.map(gif => {
+     return <Gif id={gif.id} key={gif.id} updateID={this.props.updateID} />;
+   });
+ }
   render() {
     return (
       <div className='gif-list'>
